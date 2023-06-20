@@ -1,7 +1,7 @@
 /// <reference types="cypress" />
 describe('Register for a new account via the UI', () => {
   before(function () {
-    //generates unique data and write it into the fixture file
+    //generate unique data and write it into the fixture file
     cy.createUniqueUser();
 
     //make fixture data available
@@ -11,10 +11,11 @@ describe('Register for a new account via the UI', () => {
   });
 
   it('Successfully registers a new account', function () {
+    //fill out and submit registration form
     cy.getRegistrationPage();
     cy.fillRegistrationForm(this.user);
 
-    cy.get('button[type="submit"]').click(); //submit the form
+    cy.get('button[type="submit"]').click();
 
     //validate successful registration via UI elements
     cy.get('app-article-list').should('contain.text', 'No articles are here');
