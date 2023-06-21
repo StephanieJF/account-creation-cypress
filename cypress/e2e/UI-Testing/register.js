@@ -22,7 +22,7 @@ describe('Register for a new account via the UI', () => {
     cy.get('.container > .nav').should('contain.text', this.user.username);
   });
 
-  it.only('Cannot register with missing or non-unique username and email', function () {
+  it('Cannot register with missing or non-unique username and email', function () {
     //bypass UI to register a user for this test
     cy.request({
       method: 'POST',
