@@ -50,17 +50,14 @@ Sign up form conditions:
 
 </br>
 <p>Pre-testing steps</p>
-<ol><li>First Step</li>
-<li>Second Step</li></ol>
+<ol><li>Generate new user data and write to fixture file</li></ol>
 
 <p>Test Steps</p>
-<ol><li>First Step</li>
-<li>Second Step</li>
-<li>Third Step</li></ol>
+<ol><li>Send a POST request to the `users` endpoint containing username, email, and password in the body</li></ol>
 
 <p>Expected Results</p>
-<ol><li>First</li>
-<li>Second</li>
+<ol><li>Response containing success status code of 200</li>
+<li>Response body matches data in the request body</li>
 </ol>
 
 </details>
