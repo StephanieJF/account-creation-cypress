@@ -23,11 +23,15 @@ describe('Register for a new account via the UI', () => {
   });
 
   it.only('Cannot register with missing or non-unique username and email', function () {
+    //bypass UI to register a user for this test
     cy.request({
       method: 'POST',
       url: 'https://api.realworld.io/api/users',
       body: { user: this.user },
     });
+
+    //attempt to register the user again
+
     cy.getRegistrationPage();
     //submit button remains inactive until required fields are filled
     cy.get('button[type="submit"]').should('be.disabled');
@@ -41,8 +45,8 @@ describe('Register for a new account via the UI', () => {
     cy.get('input[placeholder="Password"]').type(this.user.password);
     cy.get('button[type="submit"]').should('be.enabled'); //now enabled
 
-    //non-unique username and email should throw errors
+    //non-unique username and email should each display errors
     cy.get('button[type="submit"]').click();
-    cy.get('.error-messages').find('li').should('have.length', 2);
+    cy.get('.error-messages').find('li').should('have.length', 2).and('contain.text', 'email has already been taken').and('contain.text', 'username has already been taken');
   });
 });
