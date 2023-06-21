@@ -51,12 +51,12 @@ Sign up form conditions:
 </br>
 <p>Pre-testing steps</p>
 <ol><li>First Step</li>
-<li>Secont Step</li></ol>
+<li>Second Step</li></ol>
 
 <p>Test Steps</p>
 <ol><li>First Step</li>
-<li>Type the email address</li>
-<li>Secont Step</li></ol>
+<li>Second Step</li>
+<li>Third Step</li></ol>
 
 <p>Expected Results</p>
 <ol><li>First</li>
@@ -98,12 +98,11 @@ Sign up form conditions:
 </br>
 <p>Pre-testing steps</p>
 <ol><li>First Step</li>
-<li>Secont Step</li></ol>
+<li>Second Step</li></ol>
 
 <p>Test Steps</p>
 <ol><li>First Step</li>
-<li>Type the email address</li>
-<li>Secont Step</li></ol>
+<li>Second Step</li></ol>
 
 <p>Expected Results</p>
 <ol><li>First</li>
