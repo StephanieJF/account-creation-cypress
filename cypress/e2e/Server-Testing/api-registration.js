@@ -16,6 +16,7 @@ describe('Register for a new account via API', () => {
     cy.newAccountViaAPI(this.user).as('newUser');
 
     //check for successful status code
+    // cy.get('@newUser').its('status').should('eq', 201);
     cy.get('@newUser').its('status').should('eq', 200);
 
     //check response matches user data that was sent
