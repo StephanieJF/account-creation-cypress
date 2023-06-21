@@ -19,3 +19,11 @@ Cypress.Commands.add('fillRegistrationForm', (user) => {
   cy.get('input[placeholder="Email"]').type(user.email);
   cy.get('input[placeholder="Password"]').type(user.password);
 });
+
+Cypress.Commands.add('newAccountViaAPI', (user) => {
+  cy.request({
+    method: 'POST',
+    url: 'https://api.realworld.io/api/users',
+    body: { user: user },
+  });
+});

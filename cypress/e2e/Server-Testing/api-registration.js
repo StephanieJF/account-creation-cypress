@@ -13,11 +13,7 @@ describe('Register for a new account via API', () => {
 
   it('Successfully creates a new account', function () {
     //send POST request to create account, assign to alias newUser
-    cy.request({
-      method: 'POST',
-      url: 'https://api.realworld.io/api/users',
-      body: { user: this.user },
-    }).as('newUser');
+    cy.newAccountViaAPI(this.user).as('newUser');
 
     //check for successful status code
     cy.get('@newUser').its('status').should('eq', 200);

@@ -22,15 +22,11 @@ describe('Register for a new account via the UI', () => {
     cy.get('.container > .nav').should('contain.text', this.user.username);
   });
 
-  it('Cannot register with missing or non-unique username and email', function () {
+  it.only('Cannot register with missing or non-unique username and email', function () {
     //bypass UI to register a user for this test
-    cy.request({
-      method: 'POST',
-      url: 'https://api.realworld.io/api/users',
-      body: { user: this.user },
-    });
+    cy.newAccountViaAPI(this.user);
 
-    //attempt to register the user again
+    //attempt to register the existing user again via UI
 
     cy.getRegistrationPage();
     //submit button remains inactive until required fields are filled
