@@ -30,7 +30,7 @@ class RegistrationPage {
   }
 
   newUserViaAPI(user) {
-    cy.request({
+    return cy.request({
       method: 'POST',
       url: 'https://api.realworld.io/api/users',
       body: { user: user },
