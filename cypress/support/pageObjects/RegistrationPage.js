@@ -3,7 +3,7 @@ class RegistrationPage {
     let makeUnique = Math.random().toString(16).substring(2);
     let uniqueUsername = 'Nina' + makeUnique;
     let uniqueEmail = uniqueUsername + '@GoodDogs.com';
-    cy.writeFile('cypress/fixtures/userInfo.json', { username: `${uniqueUsername}`, email: `${uniqueEmail}`, password: 'ilovetreats456' });
+    cy.writeFile('cypress/fixtures/newUser.json', { username: `${uniqueUsername}`, email: `${uniqueEmail}`, password: 'ilovetreats456' });
   }
 
   getRegistrationPage() {
@@ -29,7 +29,7 @@ class RegistrationPage {
     return cy.get('button[type="submit"]');
   }
 
-  newUserViaAPI(user) {
+  registrationViaAPI(user) {
     return cy.request({
       method: 'POST',
       url: 'https://api.realworld.io/api/users',

@@ -1,5 +1,6 @@
 /// <reference types="cypress" />
 import RegistrationPage from '../../support/pageObjects/RegistrationPage';
+import existingUser from '../../fixtures/existingUser.json';
 
 describe('Register for a new account via the UI', () => {
   const registrationPage = new RegistrationPage();
@@ -10,7 +11,7 @@ describe('Register for a new account via the UI', () => {
     registrationPage.getRegistrationPage();
 
     //make fixture data available
-    cy.fixture('userInfo').then((user) => {
+    cy.fixture('newUser').then((user) => {
       this.user = user;
     });
   });
@@ -28,9 +29,8 @@ describe('Register for a new account via the UI', () => {
   });
 
   it('Cannot register with missing fields or already used account info', function () {
-    let existingUser = { username: 'NinaF', email: 'NinaF@TheGoodDog.com', password: 'ilovetreats123' };
     //create the account for the user if they don't already have one
-    registrationPage.newUserViaAPI(existingUser);
+    registrationPage.registrationViaAPI(existingUser);
 
     //attempt to register the existing user via UI
 

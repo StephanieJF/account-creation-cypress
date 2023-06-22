@@ -93,16 +93,15 @@ Sign up form conditions:
 
 </br>
 <p>Pre-testing steps</p>
-<ol><li>First Step</li>
-<li>Second Step</li></ol>
+<ol><li>Register test username and email if not already registered</li></ol>
 
 <p>Test Steps</p>
-<ol><li>First Step</li>
-<li>Second Step</li></ol>
+<ol><li>Send a POST request to the <code>/users</code> endpoint containing the existing user's username, email, and password in the body</li></ol>
 
 <p>Expected Results</p>
-<ol><li>First</li>
-<li>Second</li>
+<ol><li>Registration fails</li>
+<li>Response containing error status code of <code>422</code> </li>
+<li>Response error messages indicate missing fields or username/password taken</li>
 </ol>
 
 </details>
