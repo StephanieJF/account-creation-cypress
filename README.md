@@ -28,7 +28,7 @@ Sign up form conditions:
 <summary>UI Tests: An e2e approach using the HTML sign up form</summary>  
 </br>
 <p>Pre-testing steps</p>
-<ol><li>Generate new user data and write to fixture file</li>
+<ol><li>Generate unique user data and write to fixture file</li>
 <li>Navigate to the sign up page</li></ol>
 
 <p>Test Steps</p>
@@ -39,8 +39,7 @@ Sign up form conditions:
 </ol>
 
 <p>Expected Results</p>
-<ol><li>Successful registration</li>
-<li>Redirected to home page as a logged in user</li>
+<ol><li>Redirected to home page as the logged in user</li>
 </ol>
 
 </details>
@@ -70,19 +69,18 @@ Sign up form conditions:
 <summary>UI Tests: Attempt to submit the form with missing fields and non-unique username and email</summary>  
 </br>
 <p>Pre-testing steps</p>
-<ol><li>Generate new user data and write to fixture file</li>
-<li>Bypass the UI- Send a POST request to the users endpoint to add a user to the database</li>
+<ol><li>Register test username and email if not already registered</li>
 <li>Navigate to the sign up page</li></ol>
 
 <p>Test Steps</p>
 <ol><li>Type the username of existing account</li>
 <li>Type the email address of existing account</li>
-<li>Type the password</li>
+<li>Type the password of the existing account</li>
   <li>Click Sign up button</li>
 </ol>
 
 <p>Expected Results</p>
-<ol><li>Submit button is disabled until all fields are entered</li>
+<ol><li>Submit button remains disabled until all fields are entered</li>
 <li>Attempt to submit leads to error messages</li>
 <ol type="a"><li>"email has already been taken"</li><li>"username has already been taken"</li></ol>
 <li>Registration is unsuccessful</li>

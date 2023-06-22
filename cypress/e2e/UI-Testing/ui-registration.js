@@ -1,8 +1,13 @@
 /// <reference types="cypress" />
+import RegistrationPage from '../../support/pageObjects/RegistrationPage';
+
 describe('Register for a new account via the UI', () => {
+  const registrationPage = new RegistrationPage();
   beforeEach(function () {
     //generate unique data and write it into the fixture file
-    cy.createUniqueUser();
+    registrationPage.createUniqueUser();
+
+    registrationPage.getRegistrationPage();
 
     //make fixture data available
     cy.fixture('userInfo').then((user) => {
@@ -12,37 +17,37 @@ describe('Register for a new account via the UI', () => {
 
   it('Successfully registers a new account', function () {
     //fill out and submit registration form
-    cy.getRegistrationPage();
-    cy.fillRegistrationForm(this.user);
+    registrationPage.getRegistrationPage();
+    registrationPage.fillRegistrationForm(this.user);
 
-    cy.get('button[type="submit"]').click();
+    registrationPage.getSubmitButton().click();
 
     //validate successful registration via UI elements
     cy.get('app-article-list').should('contain.text', 'No articles are here');
     cy.get('.container > .nav').should('contain.text', this.user.username);
   });
 
-  it.only('Cannot register with missing or non-unique username and email', function () {
-    //bypass UI to register a user for this test
-    cy.newAccountViaAPI(this.user);
+  it('Cannot register with missing fields or already used account info', function () {
+    let existingUser = { username: 'NinaF', email: 'NinaF@TheGoodDog.com', password: 'ilovetreats123' };
+    //create the account for the user if they don't already have one
+    registrationPage.newUserViaAPI(existingUser);
 
-    //attempt to register the existing user again via UI
+    //attempt to register the existing user via UI
 
-    cy.getRegistrationPage();
-    //submit button remains inactive until required fields are filled
-    cy.get('button[type="submit"]').should('be.disabled');
+    //check that submit button remains inactive until required fields are filled
+    registrationPage.getSubmitButton().should('be.disabled');
 
-    cy.get('input[placeholder="Username"]').type(this.user.username);
-    cy.get('button[type="submit"]').should('be.disabled'); //still disabled
+    registrationPage.getInputField('Username').type(existingUser.username);
+    registrationPage.getSubmitButton().should('be.disabled'); //still disabled
 
-    cy.get('input[placeholder="Email"]').type(this.user.email);
-    cy.get('button[type="submit"]').should('be.disabled'); //still disabled
+    registrationPage.getInputField('Email').type(existingUser.email);
+    registrationPage.getSubmitButton().should('be.disabled'); //still disabled
 
-    cy.get('input[placeholder="Password"]').type(this.user.password);
-    cy.get('button[type="submit"]').should('be.enabled'); //now enabled
+    registrationPage.getInputField('Password').type(existingUser.password);
+    registrationPage.getSubmitButton().should('be.enabled'); //now enabled
 
     //non-unique username and email should each display errors
-    cy.get('button[type="submit"]').click();
+    registrationPage.getSubmitButton().click();
     cy.get('.error-messages').find('li').should('have.length', 2).and('contain.text', 'email has already been taken').and('contain.text', 'username has already been taken');
   });
 });
