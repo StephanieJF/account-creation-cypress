@@ -2,7 +2,7 @@
 
 Testing the UI and server side functionality of new user account creation in an imitation social blogging site (a [Medium.com](https://medium.com/) clone called [**Conduit**](https://angular.realworld.io/)) using [Cypress](https://www.cypress.io/).
 
-## Description
+## Overview
 
 Links:
 
@@ -19,7 +19,7 @@ Sign up form conditions:
 - All fields are required in order to submit the form
 - Username and email must be unique (not be associated with any existing accounts)
 
-## Test Features
+## Test Details
 
 **Happy Path:** Valid new user account creation
 
@@ -53,10 +53,11 @@ Sign up form conditions:
 <ol><li>Generate new user data and write to fixture file</li></ol>
 
 <p>Test Steps</p>
-<ol><li>Send a POST request to the `users` endpoint containing username, email, and password in the body</li></ol>
+<ol><li>Send a POST request to the <code>/users</code> endpoint containing username, email, and password in the body</li></ol>
 
 <p>Expected Results</p>
-<ol><li>Response containing success status code of 200</li>
+<ol><li>Response containing success status code of <code>200</code></li>
+  <ul><li>Note: Discrepancy noted in the <a href="https://github.com/gothinkster/realworld/blob/a9a1247942ba910d2475cf855de885fb340678d2/api/openapi.yml#LL39C1-L52C40">documentation</a> showing success status code of <code>201</code>. Issue filed <a href="https://github.com/gothinkster/realworld/issues/1325">here</a></li></ul>
 <li>Response body matches data in the request body</li>
 </ol>
 
